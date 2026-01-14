@@ -29,7 +29,7 @@ The algorithm works by iteratively, for upto $T$ number of ICE iterations, $T$ c
 
 We focus on one column of interest at a time. There are two types of possible rows; ones where `glucose`/`totChol` is observed, and those where they are missing. The missing rows are omitted temporarily. On the observed rows, we fit a regression model, setting e.g. `glucose` as a function of the rest of the variables in the dataset. As notation, one can refer to them as features to `glucose`, and equivalently features to `totChol`. As a temporary filling value, we substitute all indexes in features to `glucose`, where a null value is present, with the column mean. Next, we train a regression model to the target, and get weights $\theta_{\text{totChol}}$ and $\theta_{\text{glucose}}$, which is a vector. 
 
-For the first iteration, we have obtained $\theta^{(1)}_{\text{glucose}}$, $\theta^{(1)}_{\text{totChol}}$, and a filled dataset $Y^{(1)}$, which is not yet 'optimum'. Recalling the rows which were omitted for training for $\theta_{(g)}$, we now replace them with the output from the model, which will be a more accurate imputation than the mean, which was a more naive filled value. Repeat this process for all of the columns in which null values are to be imputed.
+For the first iteration, we have obtained $\theta_{\text{glucose}}^{(1)}$, $\theta_{\text{totChol}}^{(1)}$, and a filled dataset $Y^{(1)}$, which is not yet 'optimum'. Recalling the rows which were omitted for training for $\theta_{(g)}$, we now replace them with the output from the model, which will be a more accurate imputation than the mean, which was a more naive filled value. Repeat this process for all of the columns in which null values are to be imputed.
 
 In the next imputation iteration, we bring the `glucose` and the `totChol` model trained from the previous iteration. We repeat the same procedure we did, in order of the columns of interest.
 
@@ -37,7 +37,7 @@ In the next imputation iteration, we bring the `glucose` and the `totChol` model
 
 - `totChol`: Instead of replacing the `glucose` null values with the mean, now they get temporarily filled with the model predictions for `glucose` from this iteration - 1. 
 
-Now, train a fully new linear regression model, and repeat the process by moving the obtained weights to the next onward iteration. Now, we have obtained updated $\theta^{(2)}_{\text{glucose}}$, $\theta^{(2)}_{\text{totChol}}$, and a slightly better filled dataset $Y^{(2)}$, which is not yet 'optimum'. Do for $T$ iterations, with the final imputed dataset $Y^{(T)}$ and models (represented as weights) $\Theta^{(T)}$. Hopefully for doing this a sufficient amount of times, this will converge closer to the ideal values having taken the patterns from all of the other variables into account. The implementation of the method `mice()` is found in Appendix C.
+Now, train a fully new linear regression model, and repeat the process by moving the obtained weights to the next onward iteration. Now, we have obtained updated $\theta_{\text{glucose}}^{(2)}$, $\theta^{(2)}_{\text{totChol}}$, and a slightly better filled dataset $Y^{(2)}$, which is not yet 'optimum'. Do for $T$ iterations, with the final imputed dataset $Y^{(T)}$ and models (represented as weights) $\Theta^{(T)}$. Hopefully for doing this a sufficient amount of times, this will converge closer to the ideal values having taken the patterns from all of the other variables into account. The implementation of the method `mice()` is found in Appendix C.
 
 # **Implementation**
 
