@@ -53,9 +53,7 @@ from IPython.display import Image, display
 display(Image('mice::md.pattern.png'))
 ```
 
-
-    
-![png](Individual%20Project%201MS049%20Computer%20Intensive%20Statistics_files/Individual%20Project%201MS049%20Computer%20Intensive%20Statistics_3_0.png)
+![png](mice::md.pattern.png)
     
 
 
@@ -68,10 +66,8 @@ Upon running the ICE algorithm, the goal was to now inspect whether the imputed 
 from IPython.display import Image, display
 display(Image('plots.png'))
 ```
-
-
     
-![png](Individual%20Project%201MS049%20Computer%20Intensive%20Statistics_files/Individual%20Project%201MS049%20Computer%20Intensive%20Statistics_6_0.png)
+![png](plots.png)
     
 
 
