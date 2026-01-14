@@ -53,7 +53,7 @@ from IPython.display import Image, display
 display(Image('mice::md.pattern.png'))
 ```
 
-![png](mice::md.pattern.png)
+![png](mice::md-pattern.png)
     
 
 
